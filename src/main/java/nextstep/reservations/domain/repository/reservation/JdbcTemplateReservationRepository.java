@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Objects;
 
 @Repository
-@Primary
+//@Primary
 public class JdbcTemplateReservationRepository implements ReservationRepository{
     private final JdbcTemplate jdbcTemplate;
 
@@ -55,10 +55,8 @@ public class JdbcTemplateReservationRepository implements ReservationRepository{
     }
 
     @Override
-    public void remove(final Long id) {
-        int count = jdbcTemplate.update(ReservationQuery.REMOVE_BY_ID.get(), id);
-
-        if (count == 0) throw new NoSuchReservationException();
+    public int remove(final Long id) {
+        return jdbcTemplate.update(ReservationQuery.REMOVE_BY_ID.get(), id);
     }
 
     private static RowMapper<Reservation> getReservationRowMapper() {

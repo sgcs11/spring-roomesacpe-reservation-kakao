@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: aaron-was
+  name: aaron-was
+spec:
+  replicas: 1
+  minReadySeconds: 0
+  selector:
+    matchLabels:
+      app: aaron-was
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: aaron-was
+    spec:
+      containers:
+        - image: idock.daumkakao.io/onboarding2023/aaron.j
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 8080
+          name: was
+          #          resources:
+          #            limits:
+          #              cpu: 100m
+          #              memory: 100Mi
+          #            requests:
+          #              cpu: 100m
+          #              memory: 100Mi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20

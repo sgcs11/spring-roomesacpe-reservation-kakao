@@ -42,16 +42,19 @@ public class ReservationResponseDto {
         return name;
     }
 
+    /* RestAssured에서 reflection에 사용 */
     @SuppressWarnings("unused")
     public String getThemeName() {
         return themeName;
     }
 
+    /* RestAssured에서 reflection에 사용 */
     @SuppressWarnings("unused")
     public String getThemeDesc() {
         return themeDesc;
     }
 
+    /* RestAssured에서 reflection에 사용 */
     @SuppressWarnings("unused")
     public Integer getThemePrice() {
         return themePrice;

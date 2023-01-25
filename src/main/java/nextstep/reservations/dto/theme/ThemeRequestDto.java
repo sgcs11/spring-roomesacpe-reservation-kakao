@@ -5,6 +5,7 @@ public class ThemeRequestDto {
     private String desc;
     private Integer price;
 
+    /* requestbody에서 사용 */
     @SuppressWarnings("unused")
     public ThemeRequestDto() {}
 
